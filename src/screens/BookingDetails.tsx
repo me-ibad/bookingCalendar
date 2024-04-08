@@ -17,13 +17,8 @@ function BookingDetails(): JSX.Element {
   const location = useLocation();
   let navigate = useNavigate();
   const [showBooking, setShowBooking] = useState<BookingArray | null>(null);
-
   const selectStation = location.state?.selectStation;
   const allBookings = location.state?.allBookings;
-
-  //   console.log('booking=>', booking);
-
-  //   console.log('station=>', allBookings);
 
   React.useEffect(() => {
     if (allBookings) {
@@ -72,7 +67,6 @@ function BookingDetails(): JSX.Element {
                     {moment(booking?.endDate).format('YYYY-MM-DD hh:mm:ss a')}
                   </span>
                 </p>
-                {/* Display other booking details as needed */}
               </div>
             ))}
           </div>
