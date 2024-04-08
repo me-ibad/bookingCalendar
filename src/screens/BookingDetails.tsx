@@ -76,18 +76,9 @@ function BookingDetails(): JSX.Element {
               </div>
             ))}
           </div>
-          {/* <div>Customer Name: {showBooking?.customerName}</div>
-
-          <div>
-            Start Date:{' '}
-            {moment(showBooking?.startDate).format('YYYY-MM-DD hh:mm:ss a')}
-          </div>
-          <div>
-            End Date: {moment(showBooking?.endDate).format('YYYY-MM-DD')}
-          </div> */}
         </div>
       ) : (
-        'There is No Booking Details'
+        'There is No Booking Details available for this station.'
       )}
       <div>
         <button onClick={() => navigate('/')}>Back</button>
