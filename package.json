@@ -1,6 +1,6 @@
 {
   "name": "booking-calender",
-  "private": true,
+  "private": false,
   "homepage": "https://me-ibad.github.io/bookingCalender/",
   "version": "1.0.0",
   "type": "module",
@@ -11,7 +11,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "preview": "vite preview"
+    "preview": "vite preview --port 8080"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^6.4.2",
