@@ -1,8 +1,8 @@
 {
   "name": "booking-calender",
   "private": true,
-  "homepage": "https://me-ibad.github.io/booking-calender/",
-  "version": "0.0.0",
+  "homepage": "https://me-ibad.github.io/bookingCalender/",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
