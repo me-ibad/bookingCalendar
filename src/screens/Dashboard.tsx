@@ -4,6 +4,7 @@ import moment, { Moment } from 'moment';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+// Define the Station and Booking interfaces
 interface Station {
   name: String;
   id: String;
@@ -28,6 +29,8 @@ function Dashboard(): JSX.Element {
 
   const [selectStation, setSelectStation] = useState<Station | null>(null);
 
+  // Api call to get the station data
+
   React.useEffect(() => {
     axios
       .get('https://605c94c36d85de00170da8b4.mockapi.io/stations')
@@ -39,6 +42,8 @@ function Dashboard(): JSX.Element {
       });
   }, []);
 
+  // Function to get the previous and next week data
+
   const preWeek = () => {
     const newStartDate: Moment = moment(startDate).subtract(7, 'days');
     setStartDate(newStartDate);
@@ -49,9 +54,12 @@ function Dashboard(): JSX.Element {
     setStartDate(newStartDate);
   };
 
+  // Function to get the station data when clicked on a day
+
   const getStationData = (currentDate: any) => {
     let allBookings: object[] = [];
     if (selectStation && selectStation.name) {
+      // Check if the booking is on the selected date
       for (let j = 0; j < selectStation?.bookings.length; j++) {
         if (
           moment(selectStation?.bookings[j].startDate).format(DATE_FORMAT) ==
@@ -79,7 +87,7 @@ function Dashboard(): JSX.Element {
       }
     }
   };
-
+  // Function to handle the select station
   const onHandleSelect = (e: any) => {
     const selectedStation = JSON.parse(e.target.value);
     setSelectStation(selectedStation);
@@ -88,6 +96,8 @@ function Dashboard(): JSX.Element {
       setStartDate(moment(selectedStation.bookings[0].startDate));
     }
   };
+
+  // Function to render the days of the week
 
   const renderDays = (): JSX.Element[] => {
     const days: JSX.Element[] = [];
@@ -100,6 +110,7 @@ function Dashboard(): JSX.Element {
       let startTimes: string[] = [];
 
       if (selectStation && selectStation.bookings) {
+        // Check if the booking is on the selected date
         selectStation.bookings.forEach((booking) => {
           if (
             moment(booking.startDate).format(DATE_FORMAT) ==
@@ -119,7 +130,7 @@ function Dashboard(): JSX.Element {
           }
         });
       }
-
+      // Push the days to the array
       days.push(
         <button
           onClick={() => getStationData(currentDate)}

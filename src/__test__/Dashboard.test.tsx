@@ -1,4 +1,3 @@
-// eslint-disable-next-line no-use-before-define
 import React from 'react';
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
@@ -7,6 +6,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import axios from 'axios';
 import Dashboard from '../screens/Dashboard';
 
+// Mock the axios module
 describe('Dashboard', () => {
   test('renders Dashboard component without crashing', async () => {
     const mockData = {

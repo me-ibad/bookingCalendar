@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import moment from 'moment';
 import axios from 'axios';
 
+// Define the Booking interface
 interface Booking {
   customerName: string;
   endDate: string;
@@ -17,9 +18,10 @@ function BookingDetails(): JSX.Element {
   const location = useLocation();
   let navigate = useNavigate();
   const [showBooking, setShowBooking] = useState<BookingArray | null>(null);
+  // Get the selected station and all bookings data from the location state
   const selectStation = location.state?.selectStation;
   const allBookings = location.state?.allBookings;
-
+  // api call to get the booking details OF SELECTED STATION with the help of booking id
   React.useEffect(() => {
     if (allBookings) {
       Promise.all(
@@ -49,6 +51,8 @@ function BookingDetails(): JSX.Element {
         <div>
           <div className='text-lg font-semibold'>{selectStation?.name}</div>
           <div className='flex flex-wrap gap-4 my-6'>
+            {/* Display the booking details of the selected station using map */}
+
             {showBooking.map((booking, index) => (
               <div
                 key={index}

@@ -11,7 +11,7 @@ const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 describe('BookingDetail', () => {
   React.useEffect = jest.fn((f) => f());
-
+  // test for the BookingDetails component to render without crashing
   test('renders BookingDetail component and makes API call', async () => {
     const mockData = {
       state: {
