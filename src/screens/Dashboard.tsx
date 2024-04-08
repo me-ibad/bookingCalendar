@@ -154,8 +154,9 @@ function Dashboard(): JSX.Element {
           className='p-2 px-4 mt-2 rounded '
           onChange={onHandleSelect}
           id='station'
+          value=''
         >
-          <option disabled value='' selected hidden>
+          <option disabled value='' hidden>
             Select Option
           </option>
 

@@ -1,4 +1,5 @@
-//import React from 'react';
+// eslint-disable-next-line no-use-before-define
+import React from 'react';
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import { act } from 'react-dom/test-utils';
@@ -18,6 +19,7 @@ describe('Dashboard', () => {
     jest.spyOn(axios, 'get').mockResolvedValueOnce(mockData);
 
     await act(async () => {
+      React.useEffect = jest.fn((f) => f());
       render(
         <Router>
           <Dashboard />

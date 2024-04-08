@@ -1,4 +1,4 @@
-//import React from 'react';
+import React from 'react';
 import '@testing-library/jest-dom';
 import { render } from '@testing-library/react';
 import BookingDetails from '../screens/BookingDetails';
@@ -10,6 +10,8 @@ jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
 describe('BookingDetail', () => {
+  React.useEffect = jest.fn((f) => f());
+
   test('renders BookingDetail component and makes API call', async () => {
     const mockData = {
       state: {
