@@ -1,7 +1,7 @@
 {
   "name": "bookingCalender",
   "private": true,
-  "homepage": "https://me-ibad.github.io/bookingCalender/",
+  "homepage": "https://me-ibad.github.io/bookingCalendar/src/main.tsx/",
   "version": "1.0.0",
   "type": "module",
   "scripts": {
