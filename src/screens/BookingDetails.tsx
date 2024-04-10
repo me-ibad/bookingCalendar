@@ -34,10 +34,6 @@ function BookingDetails(): JSX.Element {
         .then((responses) => {
           const bookingsData = responses.map((response) => response.data);
           setShowBooking(bookingsData);
-          console.log(
-            'response=>',
-            responses.map((response) => response.data)
-          );
         })
         .catch((error) => {
           console.error(error);
@@ -69,6 +65,18 @@ function BookingDetails(): JSX.Element {
                   End Date:{' '}
                   <span className='text-red-500'>
                     {moment(booking?.endDate).format('YYYY-MM-DD hh:mm:ss a')}
+                  </span>
+                </p>
+                <p className='my-2'>
+                  Duration:{' '}
+                  <span className='text-blue-500'>
+                    {moment
+                      .duration(
+                        moment(booking?.endDate).diff(
+                          moment(booking?.startDate)
+                        )
+                      )
+                      .humanize()}{' '}
                   </span>
                 </p>
               </div>

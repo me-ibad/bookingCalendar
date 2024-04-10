@@ -25,7 +25,6 @@ function Dashboard(): JSX.Element {
 
   const [startDate, setStartDate] = useState<Moment>(initialStartDate);
   const [station, setStation] = useState<any[]>([]);
-  const [allStation, setAllStation] = useState<any[]>([]);
 
   const [selectStation, setSelectStation] = useState<Station | null>(null);
 
@@ -91,7 +90,7 @@ function Dashboard(): JSX.Element {
   const onHandleSelect = (e: any) => {
     const selectedStation = JSON.parse(e.target.value);
     setSelectStation(selectedStation);
-    setAllStation([...allStation, selectedStation]);
+
     if (selectedStation && selectedStation.name) {
       setStartDate(moment(selectedStation.bookings[0].startDate));
     }
@@ -101,13 +100,20 @@ function Dashboard(): JSX.Element {
 
   const renderDays = (): JSX.Element[] => {
     const days: JSX.Element[] = [];
+    // Loop through the days of the week
     for (let i = 0; i < 7; i++) {
       const currentDate: Moment = moment(startDate).add(i, 'days');
+
+      // isStartDate to show it in green color and isEndDate to show it in red color
 
       let customerNames: string[] = [];
       let isStartDate = false;
       let isEndDate = false;
+
+      // startTimes and endTimes is array to show the start and end time of the multiple booking on same day
+
       let startTimes: string[] = [];
+      let endTimes: string[] = [];
 
       if (selectStation && selectStation.bookings) {
         // Check if the booking is on the selected date
@@ -126,11 +132,11 @@ function Dashboard(): JSX.Element {
           ) {
             isEndDate = true;
             customerNames.push(booking.customerName);
-            startTimes.push(moment(booking.endDate).format('hh:mm a'));
+            endTimes.push(moment(booking.endDate).format('hh:mm a'));
           }
         });
       }
-      // Push the days to the array
+      // Push the days to the array days
       days.push(
         <button
           onClick={() => getStationData(currentDate)}
@@ -147,6 +153,7 @@ function Dashboard(): JSX.Element {
             <div key={index}>
               <div className='text-xs mt-1'>{name}</div>
               <div className='text-xs mt-1'>{startTimes[index]}</div>
+              <div className='text-xs mt-1'>{endTimes[index]}</div>
             </div>
           ))}
         </button>
@@ -170,7 +177,7 @@ function Dashboard(): JSX.Element {
           <option disabled value='' hidden>
             Select Option
           </option>
-
+          {/* Station selection  */}
           {Array.isArray(station) &&
             station?.map(
               (item, index) =>
@@ -191,6 +198,16 @@ function Dashboard(): JSX.Element {
         <button onClick={nextWeek}>Next Week</button>
       </div>
       <div className='week'>{renderDays()}</div>
+
+      <div className='border-t border-white mt-10 pt-10'>
+        Colors repersent the booking status
+        <div className='mt-4'>
+          <span className='p-2 bg-green-500 rounded'>Start Date</span>
+        </div>
+        <div className='mt-8'>
+          <span className='p-2 bg-red-500 rounded'>End Date</span>
+        </div>
+      </div>
     </div>
   );
 }
